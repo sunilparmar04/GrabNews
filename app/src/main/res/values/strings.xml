@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">GrabNews</string>
+    <string name="version">Version </string>
+    <string name="title_home">Grab News</string>
+    <string name="title_news_details">News Information</string>
+    <!--Drawer-->
+    <string name="open_drawer">Drawer Open</string>
+    <string name="close_drawer">Drawer Close</string>
+
+    <string name="title_country">Select Country</string>
+    <string name="title_category">Select Category</string>
+    <string name="button_cancel">cancel</string>
+</resources>

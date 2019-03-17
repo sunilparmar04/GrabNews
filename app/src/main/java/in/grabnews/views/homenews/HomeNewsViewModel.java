@@ -1,0 +1,137 @@
+package in.grabnews.views.homenews;
+
+import android.databinding.ObservableArrayList;
+import android.databinding.ObservableField;
+import android.databinding.ObservableList;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import in.grabnews.AppController;
+import in.grabnews.data.DataManager;
+import in.grabnews.data.model.NewsRequest;
+import in.grabnews.data.model.db.Category;
+import in.grabnews.data.model.db.Country;
+import in.grabnews.data.model.db.NewsArticles;
+import in.grabnews.utils.AppLogger;
+import in.grabnews.utils.NetworkUtils;
+import in.grabnews.utils.rx.SchedulerProvider;
+import in.grabnews.views.base.BaseViewModel;
+
+public class HomeNewsViewModel extends BaseViewModel<HomeNewsNavigator> {
+    public final ObservableArrayList<NewsArticles> liveNewsObservableArrayList = new ObservableArrayList<>();
+    private final ObservableField<String> appVersion = new ObservableField<>();
+    private ObservableField<String> countryCode = new ObservableField<>();
+    private ObservableField<String> newsCategory = new ObservableField<>();
+
+    public HomeNewsViewModel(DataManager dataManager, SchedulerProvider schedulerProvider) {
+        super(dataManager, schedulerProvider);
+    }
+
+    public void onGetNews() {
+
+        if (liveNewsObservableArrayList.size() == 0) {
+            setIsLoading(true);
+        }
+
+        getCompositeDisposable().add(getDataManager()
+                .doGetNewsApiCall(new NewsRequest.NewsParamsRequest(getDataManager()))
+                .doOnSuccess(response -> {
+                            getDataManager()
+                                    .newsResponse(response);
+                            getDataManager().saveNewsArticlesList(response.getArticles());
+                            liveNewsObservableArrayList.clear();
+                            liveNewsObservableArrayList.addAll(response.getArticles());
+                        }
+                )
+                .subscribeOn(getSchedulerProvider().io())
+                .observeOn(getSchedulerProvider().ui())
+                .subscribe(response -> {
+                    setIsLoading(false);
+                }, throwable -> {
+                    setIsLoading(false);
+                    // getNavigator().handleError(throwable);
+                }));
+    }
+
+    public void addLiveItemsToList(ArrayList<NewsArticles> responseList) {
+        liveNewsObservableArrayList.clear();
+        liveNewsObservableArrayList.addAll(responseList);
+    }
+
+    public ObservableList<NewsArticles> getLiveObservableList() {
+        return liveNewsObservableArrayList;
+    }
+
+    public ObservableField<String> getAppVersion() {
+        return appVersion;
+    }
+
+    public void updateAppVersion(String version) {
+        appVersion.set(version);
+    }
+
+    public void checkLocalData() {
+        //run on separate thread so that UI thread won't block
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppLogger.i("news_response", "Network status:" + NetworkUtils.isNetworkConnected(AppController.getInstace()) + "Local:" + getDataManager().isNewsArticlesEmpty().blockingFirst());
+                if (getDataManager().isNewsArticlesEmpty().blockingFirst() || NetworkUtils.isNetworkConnected(AppController.getInstace())) {
+                    onGetNews();
+                } else {
+                    List<NewsArticles> articlesArrayLists = getDataManager().getAllNewsArticles().blockingFirst();
+                    AppLogger.i("news_response", "news size:" + articlesArrayLists.size());
+                    if (articlesArrayLists.size() > 0) {
+                        liveNewsObservableArrayList.clear();
+                        liveNewsObservableArrayList.addAll(articlesArrayLists);
+                    }
+                    if (NetworkUtils.isNetworkConnected(AppController.getInstace())) {
+                        onGetNews();
+                    }
+                }
+            }
+        }).start();
+    }
+
+    public void onSelectCountry() {
+        getNavigator().showCountryDialog();
+    }
+
+    public void onSelectCategory() {
+        getNavigator().showCategoryDialog();
+    }
+
+    public void saveSelectedCoutryCode(Country country) {
+        countryCode.set(country.countryName);
+        getDataManager().setSelectedCountry(country);
+        setIsLoading(true);
+        onGetNews();
+    }
+
+    public ObservableField<String> getCountryCode() {
+        return countryCode;
+    }
+
+    public void saveSelectedCategory(Category category) {
+        newsCategory.set(category.category);
+        getDataManager().setSelectedCategory(category.category);
+        setIsLoading(true);
+        onGetNews();
+    }
+
+    public ObservableField<String> getNewsCategory() {
+        return newsCategory;
+    }
+
+    public void setDefaultCountryCategory() {
+        Country country = getDataManager().getSelectedCountry(Country.class);
+        if (country != null && !country.countryName.isEmpty()) {
+            countryCode.set(country.countryName);
+        } else {
+            countryCode.set("India");
+        }
+        newsCategory.set(getDataManager().getSelectedCategory());
+    }
+
+}

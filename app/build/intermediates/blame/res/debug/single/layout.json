@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/nobroker/android example/downloaded/GrabNews/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_web_view.xml",
+        "source": "/home/nobroker/android example/downloaded/GrabNews/app/src/main/res/layout/activity_web_view.xml"
+    },
+    {
+        "merged": "/home/nobroker/android example/downloaded/GrabNews/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/nav_header_main.xml",
+        "source": "/home/nobroker/android example/downloaded/GrabNews/app/src/main/res/layout/nav_header_main.xml"
+    },
+    {
+        "merged": "/home/nobroker/android example/downloaded/GrabNews/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/item_news.xml",
+        "source": "/home/nobroker/android example/downloaded/GrabNews/app/src/main/res/layout/item_news.xml"
+    },
+    {
+        "merged": "/home/nobroker/android example/downloaded/GrabNews/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_home_news.xml",
+        "source": "/home/nobroker/android example/downloaded/GrabNews/app/src/main/res/layout/activity_home_news.xml"
+    }
+]
