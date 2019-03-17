@@ -72,7 +72,7 @@ public class CommonUtils {
         countryUsa.countryCode = "us";
 
         Country countryAustralia = new Country();
-        countryAustralia.countryName = "Australiapter";
+        countryAustralia.countryName = "Australia";
         countryAustralia.countryCode = "au";
 
         Country countryCanada = new Country();
