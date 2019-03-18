@@ -43,6 +43,15 @@ class DataBinderMapperImpl extends android.databinding.DataBinderMapper {
                     }
                         throw new java.lang.IllegalArgumentException("The tag for activity_home_news is invalid. Received: " + tag);
                 }
+                case in.grabnews.R.layout.activity_splash:
+ {
+                        final Object tag = view.getTag();
+                        if(tag == null) throw new java.lang.RuntimeException("view must have a tag");
+                    if ("layout/activity_splash_0".equals(tag)) {
+                            return new in.grabnews.databinding.ActivitySplashBinding(bindingComponent, view);
+                    }
+                        throw new java.lang.IllegalArgumentException("The tag for activity_splash is invalid. Received: " + tag);
+                }
         }
         return null;
     }
@@ -80,6 +89,12 @@ class DataBinderMapperImpl extends android.databinding.DataBinderMapper {
             case -274885191: {
                 if(tag.equals("layout/activity_home_news_0")) {
                     return in.grabnews.R.layout.activity_home_news;
+                }
+                break;
+            }
+            case 1573928931: {
+                if(tag.equals("layout/activity_splash_0")) {
+                    return in.grabnews.R.layout.activity_splash;
                 }
                 break;
             }

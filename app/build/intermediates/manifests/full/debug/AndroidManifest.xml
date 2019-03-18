@@ -22,7 +22,7 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="in.grabnews.views.homenews.HomeNewsActivity"
+            android:name="in.grabnews.views.splash.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <intent-filter>
@@ -33,6 +33,10 @@
         </activity>
         <activity
             android:name="in.grabnews.views.webview.NewsDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name="in.grabnews.views.homenews.HomeNewsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 

@@ -672,6 +672,10 @@
         "source": "/home/nobroker/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/d900723585a31ff19369ed9665cf81bb/res/drawable-ldrtl-mdpi-v17/abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
+        "merged": "/home/nobroker/android example/downloaded/GrabNews/app/build/intermediates/res/merged/debug/layout_activity_splash.xml.flat",
+        "source": "/home/nobroker/android example/downloaded/GrabNews/app/src/main/res/layout/activity_splash.xml"
+    },
+    {
         "merged": "/home/nobroker/android example/downloaded/GrabNews/app/build/intermediates/res/merged/debug/drawable_abc_ratingbar_indicator_material.xml.flat",
         "source": "/home/nobroker/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/d900723585a31ff19369ed9665cf81bb/res/drawable/abc_ratingbar_indicator_material.xml"
     },

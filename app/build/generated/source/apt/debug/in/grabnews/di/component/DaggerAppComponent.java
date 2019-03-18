@@ -31,6 +31,7 @@ import in.grabnews.data.remote.AppApiHelper;
 import in.grabnews.data.remote.AppApiHelper_Factory;
 import in.grabnews.di.builder.ActivityBuilder_BindHomeNewsActivity;
 import in.grabnews.di.builder.ActivityBuilder_BindNewsDetailsActivity;
+import in.grabnews.di.builder.ActivityBuilder_BindSplashActivity;
 import in.grabnews.di.module.AppModule;
 import in.grabnews.di.module.AppModule_ProvideApiHelperFactory;
 import in.grabnews.di.module.AppModule_ProvideApiKeyFactory;
@@ -50,6 +51,11 @@ import in.grabnews.views.homenews.HomeNewsActivityModule_ProvideLiveDataAdapterF
 import in.grabnews.views.homenews.HomeNewsActivityModule_ProvideSplashViewModelFactory;
 import in.grabnews.views.homenews.HomeNewsActivity_MembersInjector;
 import in.grabnews.views.homenews.HomeNewsViewModel;
+import in.grabnews.views.splash.SplashActivity;
+import in.grabnews.views.splash.SplashActivityModule;
+import in.grabnews.views.splash.SplashActivityModule_ProvideSplashViewModelFactory;
+import in.grabnews.views.splash.SplashActivity_MembersInjector;
+import in.grabnews.views.splash.SplashViewModel;
 import in.grabnews.views.webview.NewsDetailsActivity;
 import in.grabnews.views.webview.NewsDetailsActivityModule;
 import in.grabnews.views.webview.NewsDetailsActivityModule_ProvideSplashViewModelFactory;
@@ -66,6 +72,9 @@ public final class DaggerAppComponent implements AppComponent {
 
   private Provider<ActivityBuilder_BindNewsDetailsActivity.NewsDetailsActivitySubcomponent.Builder>
       newsDetailsActivitySubcomponentBuilderProvider;
+
+  private Provider<ActivityBuilder_BindSplashActivity.SplashActivitySubcomponent.Builder>
+      splashActivitySubcomponentBuilderProvider;
 
   private Provider<Application> applicationProvider;
 
@@ -113,9 +122,10 @@ public final class DaggerAppComponent implements AppComponent {
       getMapOfClassOfAndProviderOfFactoryOf() {
     return MapBuilder
         .<Class<? extends Activity>, Provider<AndroidInjector.Factory<? extends Activity>>>
-            newMapBuilder(2)
+            newMapBuilder(3)
         .put(HomeNewsActivity.class, (Provider) homeNewsActivitySubcomponentBuilderProvider)
         .put(NewsDetailsActivity.class, (Provider) newsDetailsActivitySubcomponentBuilderProvider)
+        .put(SplashActivity.class, (Provider) splashActivitySubcomponentBuilderProvider)
         .build();
   }
 
@@ -140,6 +150,13 @@ public final class DaggerAppComponent implements AppComponent {
           public ActivityBuilder_BindNewsDetailsActivity.NewsDetailsActivitySubcomponent.Builder
               get() {
             return new NewsDetailsActivitySubcomponentBuilder();
+          }
+        };
+    this.splashActivitySubcomponentBuilderProvider =
+        new Provider<ActivityBuilder_BindSplashActivity.SplashActivitySubcomponent.Builder>() {
+          @Override
+          public ActivityBuilder_BindSplashActivity.SplashActivitySubcomponent.Builder get() {
+            return new SplashActivitySubcomponentBuilder();
           }
         };
     this.applicationProvider = InstanceFactory.create(builder.application);
@@ -347,6 +364,61 @@ public final class DaggerAppComponent implements AppComponent {
     private NewsDetailsActivity injectNewsDetailsActivity(NewsDetailsActivity instance) {
       NewsDetailsActivity_MembersInjector.injectMNewsDetailsViewModel(
           instance, getNewsDetailsViewModel());
+      return instance;
+    }
+  }
+
+  private final class SplashActivitySubcomponentBuilder
+      extends ActivityBuilder_BindSplashActivity.SplashActivitySubcomponent.Builder {
+    private SplashActivityModule splashActivityModule;
+
+    private SplashActivity seedInstance;
+
+    @Override
+    public ActivityBuilder_BindSplashActivity.SplashActivitySubcomponent build() {
+      if (splashActivityModule == null) {
+        this.splashActivityModule = new SplashActivityModule();
+      }
+      if (seedInstance == null) {
+        throw new IllegalStateException(SplashActivity.class.getCanonicalName() + " must be set");
+      }
+      return new SplashActivitySubcomponentImpl(this);
+    }
+
+    @Override
+    public void seedInstance(SplashActivity arg0) {
+      this.seedInstance = Preconditions.checkNotNull(arg0);
+    }
+  }
+
+  private final class SplashActivitySubcomponentImpl
+      implements ActivityBuilder_BindSplashActivity.SplashActivitySubcomponent {
+    private SplashActivityModule splashActivityModule;
+
+    private SplashActivitySubcomponentImpl(SplashActivitySubcomponentBuilder builder) {
+      initialize(builder);
+    }
+
+    private SplashViewModel getSplashViewModel() {
+      return SplashActivityModule_ProvideSplashViewModelFactory.proxyProvideSplashViewModel(
+          splashActivityModule,
+          DaggerAppComponent.this.provideDataManagerProvider.get(),
+          AppModule_ProvideSchedulerProviderFactory.proxyProvideSchedulerProvider(
+              DaggerAppComponent.this.appModule));
+    }
+
+    @SuppressWarnings("unchecked")
+    private void initialize(final SplashActivitySubcomponentBuilder builder) {
+      this.splashActivityModule = builder.splashActivityModule;
+    }
+
+    @Override
+    public void inject(SplashActivity arg0) {
+      injectSplashActivity(arg0);
+    }
+
+    private SplashActivity injectSplashActivity(SplashActivity instance) {
+      SplashActivity_MembersInjector.injectMSplashViewModel(instance, getSplashViewModel());
       return instance;
     }
   }

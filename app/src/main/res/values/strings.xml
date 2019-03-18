@@ -11,4 +11,5 @@
     <string name="title_category">Select Category</string>
     <string name="button_cancel">cancel</string>
     <string name="error_internet">Internet not available</string>
+    <string name="news">News</string>
 </resources>
