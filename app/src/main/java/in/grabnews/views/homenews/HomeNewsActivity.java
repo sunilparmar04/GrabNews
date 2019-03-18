@@ -129,10 +129,6 @@ public class HomeNewsActivity extends BaseActivity<ActivityHomeNewsBinding, Home
 
                         case R.id.navItemHome:
                             return true;
-                        case R.id.navItemCategory:
-
-                            return true;
-
                         default:
                             return false;
                     }

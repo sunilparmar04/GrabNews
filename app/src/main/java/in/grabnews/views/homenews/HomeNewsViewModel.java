@@ -8,12 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.grabnews.AppController;
+import in.grabnews.R;
 import in.grabnews.data.DataManager;
 import in.grabnews.data.model.NewsRequest;
 import in.grabnews.data.model.db.Category;
 import in.grabnews.data.model.db.Country;
 import in.grabnews.data.model.db.NewsArticles;
 import in.grabnews.utils.AppLogger;
+import in.grabnews.utils.CommonUtils;
 import in.grabnews.utils.NetworkUtils;
 import in.grabnews.utils.rx.SchedulerProvider;
 import in.grabnews.views.base.BaseViewModel;
@@ -78,7 +80,12 @@ public class HomeNewsViewModel extends BaseViewModel<HomeNewsNavigator> {
             public void run() {
                 AppLogger.i("news_response", "Network status:" + NetworkUtils.isNetworkConnected(AppController.getInstace()) + "Local:" + getDataManager().isNewsArticlesEmpty().blockingFirst());
                 if (getDataManager().isNewsArticlesEmpty().blockingFirst() || NetworkUtils.isNetworkConnected(AppController.getInstace())) {
-                    onGetNews();
+
+                    if (!NetworkUtils.isNetworkConnected(AppController.getInstace())) {
+                        CommonUtils.getInstance().showRedToast(AppController.getInstace().getString(R.string.error_internet), AppController.mInstance, 112);
+                    } else {
+                        onGetNews();
+                    }
                 } else {
                     List<NewsArticles> articlesArrayLists = getDataManager().getAllNewsArticles().blockingFirst();
                     AppLogger.i("news_response", "news size:" + articlesArrayLists.size());
@@ -88,6 +95,10 @@ public class HomeNewsViewModel extends BaseViewModel<HomeNewsNavigator> {
                     }
                     if (NetworkUtils.isNetworkConnected(AppController.getInstace())) {
                         onGetNews();
+                    } else {
+                        if (!NetworkUtils.isNetworkConnected(AppController.getInstace())) {
+                            CommonUtils.getInstance().showRedToast(AppController.getInstace().getString(R.string.error_internet), AppController.mInstance, 112);
+                        }
                     }
                 }
             }
@@ -105,8 +116,15 @@ public class HomeNewsViewModel extends BaseViewModel<HomeNewsNavigator> {
     public void saveSelectedCoutryCode(Country country) {
         countryCode.set(country.countryName);
         getDataManager().setSelectedCountry(country);
-        setIsLoading(true);
-        onGetNews();
+
+        if (!NetworkUtils.isNetworkConnected(AppController.getInstace())) {
+            CommonUtils.getInstance().showRedToast(AppController.getInstace().getString(R.string.error_internet), AppController.mInstance, 112);
+            return;
+        } else {
+            setIsLoading(true);
+            onGetNews();
+        }
+
     }
 
     public ObservableField<String> getCountryCode() {
@@ -117,7 +135,13 @@ public class HomeNewsViewModel extends BaseViewModel<HomeNewsNavigator> {
         newsCategory.set(category.category);
         getDataManager().setSelectedCategory(category.category);
         setIsLoading(true);
-        onGetNews();
+        if (!NetworkUtils.isNetworkConnected(AppController.getInstace())) {
+            CommonUtils.getInstance().showRedToast(AppController.getInstace().getString(R.string.error_internet), AppController.mInstance, 112);
+            return;
+        } else {
+            setIsLoading(true);
+            onGetNews();
+        }
     }
 
     public ObservableField<String> getNewsCategory() {

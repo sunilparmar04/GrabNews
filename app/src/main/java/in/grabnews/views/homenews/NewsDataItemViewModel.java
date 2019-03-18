@@ -5,8 +5,11 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 
 import in.grabnews.AppController;
+import in.grabnews.R;
 import in.grabnews.data.model.db.NewsArticles;
 import in.grabnews.utils.AppConstants;
+import in.grabnews.utils.CommonUtils;
+import in.grabnews.utils.NetworkUtils;
 import in.grabnews.views.webview.NewsDetailsActivity;
 
 public class NewsDataItemViewModel {
@@ -38,9 +41,14 @@ public class NewsDataItemViewModel {
     }
 
     public void onItemClick() {
-        Intent gotoNewsDetails = new Intent(AppController.getInstace(), NewsDetailsActivity.class);
-        gotoNewsDetails.putExtra(AppConstants.NEWS_DETAILS_URL, newsArticlesField.get().getUrl());
-        AppController.getInstace().startActivity(gotoNewsDetails);
+        if (NetworkUtils.isNetworkConnected(AppController.getInstace())) {
+            Intent gotoNewsDetails = new Intent(AppController.getInstace(), NewsDetailsActivity.class);
+            gotoNewsDetails.putExtra(AppConstants.NEWS_DETAILS_URL, newsArticlesField.get().getUrl());
+            AppController.getInstace().startActivity(gotoNewsDetails);
+        } else {
+            CommonUtils.getInstance().showRedToast(AppController.getInstace().getString(R.string.error_internet), AppController.mInstance, 112);
+        }
+
 
     }
 
