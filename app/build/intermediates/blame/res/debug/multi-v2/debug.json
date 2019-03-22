@@ -1,20 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/nobroker/android example/downloaded/GrabNews/app/build/intermediates/res/merged/debug/values-mk_values-mk.arsc.flat",
+            "outputFile": "/home/nobroker/android example/downloaded/GrabNews/app/build/intermediates/res/merged/debug/values-is_values-is.arsc.flat",
             "map": [
                 {
-                    "source": "/home/nobroker/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/d900723585a31ff19369ed9665cf81bb/res/values-mk/values-mk.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,213,317,425,511,616,735,818,900,987,1093,1200,1301,1408,1519,1623,1779,1877",
-                        "endColumns": "107,103,107,85,104,118,82,81,86,105,106,100,106,110,103,155,97,83",
-                        "endOffsets": "208,312,420,506,611,730,813,895,982,1088,1195,1296,1403,1514,1618,1774,1872,1956"
-                    }
-                },
-                {
-                    "source": "/home/nobroker/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/9c87a7e2a3a1e24858048923218c4e10/res/values-mk/values-mk.xml",
+                    "source": "/home/nobroker/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/9c87a7e2a3a1e24858048923218c4e10/res/values-is/values-is.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -25,9 +15,19 @@
                     "to": {
                         "startLines": "20",
                         "startColumns": "4",
-                        "startOffsets": "1961",
+                        "startOffsets": "1916",
                         "endColumns": "100",
-                        "endOffsets": "2057"
+                        "endOffsets": "2012"
+                    }
+                },
+                {
+                    "source": "/home/nobroker/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/d900723585a31ff19369ed9665cf81bb/res/values-is/values-is.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,205,302,414,499,600,714,794,874,955,1065,1173,1271,1380,1479,1582,1737,1835",
+                        "endColumns": "99,96,111,84,100,113,79,79,80,109,107,97,108,98,102,154,97,80",
+                        "endOffsets": "200,297,409,494,595,709,789,869,950,1060,1168,1266,1375,1474,1577,1732,1830,1911"
                     }
                 }
             ]
@@ -65,10 +65,20 @@
             ]
         },
         {
-            "outputFile": "/home/nobroker/android example/downloaded/GrabNews/app/build/intermediates/res/merged/debug/values-is_values-is.arsc.flat",
+            "outputFile": "/home/nobroker/android example/downloaded/GrabNews/app/build/intermediates/res/merged/debug/values-mk_values-mk.arsc.flat",
             "map": [
                 {
-                    "source": "/home/nobroker/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/9c87a7e2a3a1e24858048923218c4e10/res/values-is/values-is.xml",
+                    "source": "/home/nobroker/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/d900723585a31ff19369ed9665cf81bb/res/values-mk/values-mk.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,213,317,425,511,616,735,818,900,987,1093,1200,1301,1408,1519,1623,1779,1877",
+                        "endColumns": "107,103,107,85,104,118,82,81,86,105,106,100,106,110,103,155,97,83",
+                        "endOffsets": "208,312,420,506,611,730,813,895,982,1088,1195,1296,1403,1514,1618,1774,1872,1956"
+                    }
+                },
+                {
+                    "source": "/home/nobroker/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/9c87a7e2a3a1e24858048923218c4e10/res/values-mk/values-mk.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -79,19 +89,9 @@
                     "to": {
                         "startLines": "20",
                         "startColumns": "4",
-                        "startOffsets": "1916",
+                        "startOffsets": "1961",
                         "endColumns": "100",
-                        "endOffsets": "2012"
-                    }
-                },
-                {
-                    "source": "/home/nobroker/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/d900723585a31ff19369ed9665cf81bb/res/values-is/values-is.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,205,302,414,499,600,714,794,874,955,1065,1173,1271,1380,1479,1582,1737,1835",
-                        "endColumns": "99,96,111,84,100,113,79,79,80,109,107,97,108,98,102,154,97,80",
-                        "endOffsets": "200,297,409,494,595,709,789,869,950,1060,1168,1266,1375,1474,1577,1732,1830,1911"
+                        "endOffsets": "2057"
                     }
                 }
             ]
@@ -336,6 +336,22 @@
             ]
         },
         {
+            "outputFile": "/home/nobroker/android example/downloaded/GrabNews/app/build/intermediates/res/merged/debug/values-hdpi-v4_values-hdpi-v4.arsc.flat",
+            "map": [
+                {
+                    "source": "/home/nobroker/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/d900723585a31ff19369ed9665cf81bb/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "/home/nobroker/android example/downloaded/GrabNews/app/build/intermediates/res/merged/debug/values-land_values-land.arsc.flat",
             "map": [
                 {
@@ -365,22 +381,6 @@
                         "startOffsets": "55,125,189,260",
                         "endColumns": "69,63,70,67",
                         "endOffsets": "120,184,255,323"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "/home/nobroker/android example/downloaded/GrabNews/app/build/intermediates/res/merged/debug/values-hdpi-v4_values-hdpi-v4.arsc.flat",
-            "map": [
-                {
-                    "source": "/home/nobroker/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.2.aar/d900723585a31ff19369ed9665cf81bb/res/values-hdpi-v4/values-hdpi-v4.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endLines": "6",
-                        "endColumns": "13",
-                        "endOffsets": "327"
                     }
                 }
             ]
