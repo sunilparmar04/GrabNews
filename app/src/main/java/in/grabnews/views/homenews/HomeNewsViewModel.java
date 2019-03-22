@@ -3,9 +3,12 @@ package in.grabnews.views.homenews;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableField;
 import android.databinding.ObservableList;
+import android.os.Looper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Handler;
 
 import in.grabnews.AppController;
 import in.grabnews.R;
@@ -78,6 +81,8 @@ public class HomeNewsViewModel extends BaseViewModel<HomeNewsNavigator> {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                Looper.prepare();
+                Log.i("news_response","Thread:"+Thread.currentThread().getId());
                 AppLogger.i("news_response", "Network status:" + NetworkUtils.isNetworkConnected(AppController.getInstace()) + "Local:" + getDataManager().isNewsArticlesEmpty().blockingFirst());
                 if (getDataManager().isNewsArticlesEmpty().blockingFirst() || NetworkUtils.isNetworkConnected(AppController.getInstace())) {
 
@@ -97,10 +102,13 @@ public class HomeNewsViewModel extends BaseViewModel<HomeNewsNavigator> {
                         onGetNews();
                     } else {
                         if (!NetworkUtils.isNetworkConnected(AppController.getInstace())) {
+
                             CommonUtils.getInstance().showRedToast(AppController.getInstace().getString(R.string.error_internet), AppController.mInstance, 112);
                         }
                     }
                 }
+
+                Looper.loop();
             }
         }).start();
     }

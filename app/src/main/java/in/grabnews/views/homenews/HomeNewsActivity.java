@@ -68,6 +68,7 @@ public class HomeNewsActivity extends BaseActivity<ActivityHomeNewsBinding, Home
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       Log.i("news_response","MAin Thread:"+Thread.currentThread().getId());
         activityHomeNewsBinding = getViewDataBinding();
         AppLogger.i("home_activity", "onCreate");
         mHomeNewsViewModel.setNavigator(this);
